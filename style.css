@@ -13,7 +13,7 @@ header {
     padding: 0.6rem;
     color: white;
 }
-
+ 
 .navigationContainer {
     width: 100%;
     padding: 1rem;
@@ -31,7 +31,7 @@ header {
     
 }
 
-.navigation a { 
+.navigation a {  /* something is wrong here the buttons are closer to the right edge, check later */
     text-decoration: none;
     text-align: center;
     color: white;
@@ -45,6 +45,23 @@ header {
     padding: 1rem 0;
     width: 60%;
     align-self: center;
+}
+
+.galleryContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);  
+  gap: 20px; 
+  padding: 20px;
+  background-color: #1a1c23; 
+}
+
+.galleryImage img {
+  width: 100%;
+  aspect-ratio: 1 / 1; 
+  object-fit: cover; 
+  border-radius: 12px; 
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 /* desktop version */
@@ -64,5 +81,5 @@ header {
         border-radius: 0;
         padding: 0;
     }
-    
+     /* hover effect for desktop? css or not?*/
 }
