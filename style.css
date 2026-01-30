@@ -1,0 +1,68 @@
+/* mobile version */
+body {
+    color: white;
+    background-color: rgb(36, 41, 47);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+header {
+    background-color: #6c6c6c;
+    width: auto;
+    padding: 0.6rem;
+    color: white;
+}
+
+.navigationContainer {
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 2px solid #6c6c6c; 
+    margin-bottom: 30px;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    
+}
+
+.navigation a { 
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.29);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.9); /*glass styling ends here*/
+    padding: 1rem 0;
+    width: 60%;
+    align-self: center;
+}
+
+/* desktop version */
+@media (min-width: 700px) {
+    .navigation {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap:3rem;
+    }
+
+    .navigation a {
+        background: none;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-radius: 0;
+        padding: 0;
+    }
+    
+}
