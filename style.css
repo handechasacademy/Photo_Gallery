@@ -1,85 +1,159 @@
-/* mobile version */
-body {
-    color: white;
-    background-color: rgb(36, 41, 47);
-    margin: 0;
-    padding: 0;
-    width: 100%;
+:root {
+    --bg-main: #0f1720;
+    --bg-surface: rgba(255, 255, 255, 0.06);
+    --bg-surface-strong: rgba(255, 255, 255, 0.1);
+    --accent: #7fbfa4;
+    --text-main: #f1f5f9;
+    --text-muted: #cbd5e1;
+    --border-soft: rgba(255, 255, 255, 0.15);
 }
 
-header {
-    background-color: #6c6c6c;
-    width: auto;
-    padding: 0.6rem;
-    color: white;
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-main);
+    background:
+        radial-gradient(circle at top, #1f2933, var(--bg-main));
+    text-align: center;
 }
- 
+
+/* header part */
+header {
+    padding: 1.5rem 1.25rem;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.02)
+    );
+    border-bottom: 1px solid var(--border-soft);
+}
+
+header h1 {
+    margin: 0 auto;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+/* navigation  */
 .navigationContainer {
-    width: 100%;
-    padding: 1rem;
-    border-bottom: 2px solid #6c6c6c; 
-    margin-bottom: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.25rem;
 }
 
 .navigation {
     display: flex;
     flex-direction: column;
-    gap: 0.1rem;
+    gap: 0.2rem;
     width: 100%;
-    padding: 10px;
-    margin: 0;
-    
 }
 
-.navigation a {  /* something is wrong here the buttons are closer to the right edge, check later */
+.navigation a {
     text-decoration: none;
+    color: var(--text-main);
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-soft);
     text-align: center;
-    color: white;
-    /* From https://css.glass */
-    background: rgba(255, 255, 255, 0.29);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.9); /*glass styling ends here*/
-    padding: 1rem 0;
-    width: 60%;
-    align-self: center;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
+/*  Content part */
+.contentContainer {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 20px;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.02)
+    );
+    border: 1px solid var(--border-soft);
+    backdrop-filter: blur(12px);
+    text-align: center;
+}
+
+.contentContainer h2 {
+    margin-top: 0;
+    font-size: 1.7rem;
+}
+
+.contentContainer h3 {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+.intro {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.credits {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+/* how to use the site - list */
+.howToList {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+}
+
+.howToList li {
+    padding-left: 1.8rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+    color: var(--text-muted);
+}
+
+.howToList li::before {
+    content: "✓";
+    left: 0;
+    margin-right: 0.3rem;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* gallery part */
 .galleryContainer {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);  
-  gap: 20px; 
-  padding: 20px;
-  background-color: #1a1c23; 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
 .galleryImage img {
-  width: 100%;
-  aspect-ratio: 1 / 1; 
-  object-fit: cover; 
-  border-radius: 12px; 
-  cursor: pointer;
-  transition: transform 0.2s ease;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* desktop version */
+/* desktop browser version */
 @media (min-width: 700px) {
     .navigation {
         flex-direction: row;
-        justify-content: flex-start;
-        gap:3rem;
+        gap: 2.5rem;
+        justify-content: center;
     }
 
     .navigation a {
         background: none;
         border: none;
-        box-shadow: none;
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        border-radius: 0;
         padding: 0;
+        border-radius: 0;
+        color: var(--text-muted);
     }
-     /* hover effect for desktop? css or not?*/
+
+    .contentContainer {
+        padding: 2.5rem;
+    }
 }
