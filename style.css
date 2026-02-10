@@ -1,20 +1,21 @@
 :root {
-    --bg-main: #0f1720;
-    --bg-surface: rgba(255, 255, 255, 0.06);
-    --bg-surface-strong: rgba(255, 255, 255, 0.1);
-    --accent: #7fbfa4;
-    --text-main: #f1f5f9;
-    --text-muted: #cbd5e1;
-    --border-soft: rgba(255, 255, 255, 0.15);
+    --bg-main: #0a0f0d;
+    --bg-surface: rgba(255, 255, 255, 0.04);
+    --bg-surface-strong: rgba(255, 255, 255, 0.08);
+    --accent: #a3e9cc;
+    --text-main: #f4f8d2;
+    --border-soft: rgba(212, 163, 115, 0.2);
 }
 
 body {
     margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 300;
     color: var(--text-main);
-    background:
-        radial-gradient(circle at top, #1f2933, var(--bg-main));
+    background: radial-gradient(circle at top, #1b261d, var(--bg-main));
     text-align: center;
+    font-family: 'Gloock', serif;
+    font-weight: 400;
+    letter-spacing: 0.1rem;    
 }
 
 /* header part */
@@ -32,13 +33,22 @@ header h1 {
     margin: 0 auto;
     font-size: 1.6rem;
     font-weight: 600;
+    text-align: center;
+    font-size: 2.2rem;
+    letter-spacing: 0.3rem;
+    margin-bottom: 0.5rem;
 }
+
+
 
 /* navigation  */
 .navigationContainer {
     max-width: 900px;
     margin: 0 auto;
     padding: 1.25rem;
+    border-bottom: 1px solid;
+    border-image: linear-gradient(to right, transparent, var(--border-soft), transparent) 1;
+    margin-bottom: 1rem;
 }
 
 .navigation {
@@ -57,6 +67,42 @@ header h1 {
     border: 1px solid var(--border-soft);
     text-align: center;
     transition: background 0.2s ease, transform 0.15s ease;
+    
+}
+
+.navigation input {
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
+    background: var(--bg-surface);
+    color: var(--text-main);
+    font-family: 'Gloock', serif;
+    font-size: 0.9rem;
+}
+
+.navigation input::placeholder {
+    color: var(--text-main);
+    text-align: center;
+}
+
+.navigation a.active {
+    color: var(--text-main);
+    text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.navigation a.active::after {
+    content: "";
+    display: block;
+    width: 40%;
+    height: 2px;
+    margin: 8px auto 0;
+    background: var(--text-main);
+    border-radius: 10px;
+    box-shadow: 
+        0 0 10px var(--text-main), 
+        0 0 20px var(--text-main);
 }
 
 /*  Content part */
@@ -139,11 +185,33 @@ header h1 {
 
 /* desktop browser version */
 @media (min-width: 700px) {
+
+   header {
+        flex-direction: row; 
+        justify-content: center;
+        min-height: 4rem;
+    }
+
+    header input {
+        position: absolute;
+        right: 1.25rem;
+        width: 200px;
+    }
+
+    .navigation {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2.5rem;
+        justify-content: center;
+    }
+
     .navigation {
         flex-direction: row;
         gap: 2.5rem;
         justify-content: center;
     }
+
 
     .navigation a {
         background: none;
@@ -151,9 +219,55 @@ header h1 {
         padding: 0;
         border-radius: 0;
         color: var(--text-muted);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
     }
+
+    .navigation a:hover {
+        transform: scale(1.2);
+        color: var(--text-main);
+        text-shadow: 0 0 8px var(--text-main);
+        background: none;
+        border: none;
+    }
+
+    .navigation input:hover {
+        cursor: pointer;
+    }
+}
 
     .contentContainer {
         padding: 2.5rem;
     }
-}
+
+    .galleryContainer {
+        grid-template-columns: repeat(3, 1fr); 
+        max-width: 1000px; 
+        margin: 0 auto;
+        gap: 30px; 
+        padding: 40px;
+    }
+
+    .galleryImage {
+        padding: 0.6rem;
+        transition: transform 0.3s ease;
+    }
+
+    .galleryImage img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 1rem;
+        cursor: pointer;
+        transition: filter 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .galleryImage img:hover {
+        transform: scale(1.02);
+        box-shadow: 
+            0 0 15px rgba(181, 233, 163, 0.4), 
+            0 0 30px rgba(164, 233, 163, 0.2);
+        filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 10px var(--accent));
+        
+    }    
+        
+    
