@@ -1,0 +1,39 @@
+{
+  "name": "photo_gallery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/handechasacademy/Photo_Gallery.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/handechasacademy/Photo_Gallery/issues"
+  },
+  "homepage": "https://github.com/handechasacademy/Photo_Gallery#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.0",
+    "globals": "^17.3.0",
+    "jest": "^30.2.0"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "lines": 80,
+        "statements": 80,
+        "functions": 80,
+        "branches": 80
+      }
+    }
+  }
+}
