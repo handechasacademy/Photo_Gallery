@@ -1,4 +1,4 @@
-# HANDE'S PHOTO GALLERY 📸
+# HANDE'S PHOTO GALLERY 
 
 ![Jest Tests CI](https://github.com/handechasacademy/Photo_Gallery/actions/workflows/ci.yml/badge.svg) [![codecov](https://codecov.io/gh/handechasacademy/Photo_Gallery/graph/badge.svg?token=4ZOTNMOH8S)](https://codecov.io/gh/handechasacademy/Photo_Gallery)
 
@@ -18,7 +18,7 @@ I moved away from my "flat and messy" look to a more professional architecture:
 * `public/`: The "Face" (HTML and high-res assets).
 * `tests/`: The "Guard Dog" (Ensuring everything stays at 100%).
 
-## Getting Started 🚀
+## Getting Started 
 
 1. **Clone the repository.**
 2. **Install dependencies**: Run `npm install` to set up the testing environment.
