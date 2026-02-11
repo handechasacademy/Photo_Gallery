@@ -2,7 +2,7 @@
 
 ![Jest Tests CI](https://github.com/handechasacademy/Photo_Gallery/actions/workflows/ci.yml/badge.svg) [![codecov](https://codecov.io/gh/handechasacademy/Photo_Gallery/graph/badge.svg?token=4ZOTNMOH8S)](https://codecov.io/gh/handechasacademy/Photo_Gallery)
 
-Welcome to the my gallery. It’s clean, it’s functional, and it actually works(somehow). I built this to showcase images of animals, mushrooms, space, and nature as a school assignment.
+Welcome to the my gallery. It’s clean, it’s functional, and it actually works(somehow). I built this to showcase images of animals, mushrooms, space, and nature as a school assignment. They are very cute btw.
 
 ## Key Features
 
@@ -13,10 +13,10 @@ Welcome to the my gallery. It’s clean, it’s functional, and it actually work
 
 ## Project Structure
 
-I moved away from my "flat and messy" look to a more professional architecture:
-* `src/`: The "Brain" (Scripts, CSS, and data).
-* `public/`: The "Face" (HTML and high-res assets).
-* `tests/`: The "Guard Dog" (Ensuring everything stays at 100%).
+I chose an architecture like this:
+* `src/`: Scripts, CSS, and data
+* `public/`: HTML and high-res assets
+* `tests/`: just like the name. tests. 
 
 ## Getting Started 
 
