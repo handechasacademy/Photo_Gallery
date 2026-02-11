@@ -1,103 +1,109 @@
-//navigation pop animations
-const currentFile = window.location.pathname.split("/").pop();
-const navLinks = document.querySelectorAll('.navigation a');
+// functions
 
-navLinks.forEach(link => {
-    const linkHref = link.getAttribute('href');
+// Get current page from URL
+function getCurrentPage(pathname = window.location.pathname) {
+    const parts = pathname.split("/");
+    const file = parts.pop();
+    if (!file || file === "") return "homepage";
+    return file.split(".")[0].toLowerCase();
+}
 
-    if (linkHref === currentFile || (currentFile === "" && linkHref === "index.html")) {
-        link.classList.add('active');
+// Filter images based on search term
+function filterImages(images, term) {
+    return images.filter(img =>
+        img.tags.some(tag => tag.toLowerCase().includes(term.toLowerCase()))
+    );
+}
+
+// Show full image in modal
+function showFullImage(modal, modalImg, fullPath) {
+    if (!modal || !modalImg) return;
+    modal.style.display = "flex";
+    modalImg.src = fullPath;
+}
+
+// Load images dynamically
+async function loadImages(gallery, modal, modalImg) {
+    if (!gallery) return;
+    try {
+        const response = await fetch('../images.json');
+        const images = await response.json();
+        const currentPage = getCurrentPage();
+
+        gallery.innerHTML = '';
+
+        images.forEach(img => {
+            const categoryLower = img.category.toLowerCase();
+            if (categoryLower === currentPage || currentPage === "homepage") {
+                const div = document.createElement('div');
+                div.className = 'galleryImage';
+
+                const imageElement = document.createElement('img');
+                imageElement.src = `../${img.thumb}`;
+                imageElement.alt = img.tags.join(', ');
+                imageElement.loading = 'lazy';
+
+                imageElement.addEventListener('click', () =>
+                    showFullImage(modal, modalImg, `../${img.full}`)
+                );
+
+                div.appendChild(imageElement);
+                gallery.appendChild(div);
+            }
+        });
+    } catch (err) {
+        console.error("Could not load images.json", err);
     }
-});
+}
 
-
-//search function
-const searchInput = document.querySelector('.navigation input');
-
-if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
+// Attach search input to filter gallery
+function attachSearch(input, gallery) {
+    if (!input || !gallery) return;
+    input.addEventListener('input', e => {
         const term = e.target.value.toLowerCase();
-        const cards = document.querySelectorAll('.galleryImage');
-
+        const cards = gallery.querySelectorAll('.galleryImage');
         cards.forEach(card => {
             const altText = card.querySelector('img').alt.toLowerCase();
-            if (altText.includes(term)) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
+            card.style.display = altText.includes(term) ? "block" : "none";
         });
     });
 }
 
-//to show images
+// event listeners
 
-function showFullImage(fullPath) {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('fullImage');
-    
-    if (modal && modalImg) {
-        modal.style.display = "flex";
-        modalImg.src = fullPath;
-    }
-}
-
-document.addEventListener('click', (e) => {
+document.addEventListener('click', e => {
     const modal = document.getElementById('imageModal');
     if (e.target.classList.contains('close') || e.target === modal) {
         modal.style.display = "none";
     }
 });
 
-//press esc to close the pic 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
         const modal = document.getElementById('imageModal');
-        if (modal && modal.style.display === 'flex') {
-            modal.style.display = 'none';
+        if (modal && modal.style.display === "flex") {
+            modal.style.display = "none";
         }
     }
 });
 
+// initialization
 
-async function loadImages() {
-    try {
-        const response = await fetch('../images.json'); 
-        const images = await response.json();
-        const gallery = document.getElementById('gallery');
-        
-        if (!gallery) return;
-        gallery.innerHTML = '';
-    
-        const pathParts = window.location.pathname.split("/");
-        const currentPage = pathParts.pop().split(".")[0].toLowerCase();
-        
-        images.forEach(img => {
-            const categoryLower = img.category.toLowerCase();
+const gallery = document.getElementById('gallery');
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('fullImage');
+const searchInput = document.querySelector('.navigation input');
 
-            if (categoryLower === currentPage || currentPage === "homepage") {
-                
-                const div = document.createElement('div');
-                div.className = 'galleryImage';
+if (searchInput) attachSearch(searchInput, gallery);
+loadImages(gallery, modal, modalImg);
 
-                const imageElement = document.createElement('img');
-                
-                imageElement.src = `../${img.thumb}`; 
-                imageElement.alt = img.tags.join(', ');
-                imageElement.loading = "lazy";
-
-                imageElement.addEventListener('click', () => {
-                    showFullImage(`../${img.full}`);
-                });
-
-                div.appendChild(imageElement);
-                gallery.appendChild(div);
-            }
-        });
-    } catch (error) {
-        console.error("Path Error: script can't find images.json at ../images.json", error);
-    }
+// exports for jest
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        getCurrentPage,
+        filterImages,
+        showFullImage,
+        loadImages,
+        attachSearch
+    };
 }
-
-loadImages();
-
