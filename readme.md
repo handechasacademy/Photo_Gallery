@@ -26,3 +26,5 @@ I moved away from my "flat and messy" look to a more professional architecture:
 4. **View the Gallery**: Open `index.html` in the root directory to launch the application.
 ---
 *This project is not cruelty free because it tests on animals(me).*
+
+
