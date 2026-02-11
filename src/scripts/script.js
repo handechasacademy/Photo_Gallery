@@ -26,7 +26,7 @@ function showFullImage(modal, modalImg, fullPath) {
 async function loadImages(gallery, modal, modalImg) {
     if (!gallery) return;
     try {
-        const response = await fetch('images.json');
+        const response = await fetch('../../src/images.json');
         const images = await response.json();
         const currentPage = getCurrentPage();
 
@@ -39,12 +39,12 @@ async function loadImages(gallery, modal, modalImg) {
                 div.className = 'galleryImage';
 
                 const imageElement = document.createElement('img');
-                imageElement.src = `../${img.thumb}`;
+                imageElement.src = `../../public/${img.thumb}`;
                 imageElement.alt = img.tags.join(', ');
                 imageElement.loading = 'lazy';
 
                 imageElement.addEventListener('click', () =>
-                    showFullImage(modal, modalImg, `../${img.full}`)
+                    showFullImage(modal, modalImg, `../../public/${img.full}`) // No semicolon here
                 );
 
                 div.appendChild(imageElement);
