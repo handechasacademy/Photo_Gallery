@@ -87,6 +87,13 @@ document.addEventListener('keydown', e => {
     }
 });
 
+document.addEventListener('keydown', e => {
+    if (modal.style.display === 'flex') {
+        if (e.key === 'ArrowRight') loadNextImage();
+        if (e.key === 'ArrowLeft') loadPreviousImage();
+    }
+});
+
 // initialization
 
 const gallery = document.getElementById('gallery');
