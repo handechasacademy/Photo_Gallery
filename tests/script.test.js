@@ -139,7 +139,6 @@ describe('Gallery UI Functions', () => {
     test('clicking the modal background closes it', () => {
         modal.style.display = 'flex';
         
-        // Simulate clicking the modal overlay itself
         const event = new MouseEvent('click', { bubbles: true });
         modal.dispatchEvent(event); 
         
@@ -180,5 +179,38 @@ describe('Gallery UI Functions', () => {
 
     test('getCurrentPage returns homepage for a trailing slash path', () => {
         expect(getCurrentPage('/folder/')).toBe('homepage');
+    });
+
+    test('pressing ArrowRight triggers loadNextImage if modal is open', () => {
+        modal.style.display = 'flex';
+        global.loadNextImage = jest.fn();
+
+        const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+        document.dispatchEvent(event);
+
+        expect(global.loadNextImage).toHaveBeenCalled();
+        delete global.loadNextImage;
+    });
+
+    test('pressing ArrowLeft triggers loadPreviousImage if modal is open', () => {
+        modal.style.display = 'flex';
+        global.loadPreviousImage = jest.fn();
+
+        const event = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
+        document.dispatchEvent(event);
+
+        expect(global.loadPreviousImage).toHaveBeenCalled();
+        delete global.loadPreviousImage;
+    });
+
+    test('arrow keys do nothing if modal is closed', () => {
+        modal.style.display = 'none';
+        global.loadNextImage = jest.fn();
+
+        const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+        document.dispatchEvent(event);
+
+        expect(global.loadNextImage).not.toHaveBeenCalled();
+        delete global.loadNextImage;
     });
 });

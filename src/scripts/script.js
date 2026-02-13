@@ -88,7 +88,9 @@ document.addEventListener('keydown', e => {
 });
 
 document.addEventListener('keydown', e => {
-    if (modal.style.display === 'flex') {
+    const modal = document.getElementById('imageModal');
+    
+    if (modal && modal.style.display === 'flex') {
         if (e.key === 'ArrowRight') loadNextImage();
         if (e.key === 'ArrowLeft') loadPreviousImage();
     }
