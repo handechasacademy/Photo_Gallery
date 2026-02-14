@@ -139,7 +139,6 @@ describe('Gallery UI Functions', () => {
     test('clicking the modal background closes it', () => {
         modal.style.display = 'flex';
         
-        // Simulate clicking the modal overlay itself
         const event = new MouseEvent('click', { bubbles: true });
         modal.dispatchEvent(event); 
         
